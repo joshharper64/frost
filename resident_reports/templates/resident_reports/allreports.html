@@ -1,0 +1,16 @@
+{% extends "homepage/base.html" %}
+
+{% block content %}
+
+  <p>Reports</p>
+
+  <ul>
+    {% for report in reports %}
+      <p>{{ report.date_added|date:'M d, Y H:i' }}</p>
+      <p>{{ report.text|linebreaks }}</p>
+    {% empty %}
+      <li>There have been no reports</li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends "homepage/base.html" %}
+
+{% block content %}
+
+  <p>Report Classifications</p>
+
+  <ul>
+    {% for topic in topics %}
+      <li>
+        <a href="{% url 'resident_reports:topic' topic.id %}">{{ topic }}</a>
+      </li>
+    {% empty %}
+      <li>There are currently no categories</li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %}

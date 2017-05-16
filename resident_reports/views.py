@@ -5,6 +5,10 @@ from django.core.urlresolvers import reverse
 from .models import Topic, Report
 from .forms import ReportForm
 
+def rindex(request):
+    """ Show the Resident Report index """
+    return render(request, 'resident_reports/rindex.html')
+
 def topics(request):
     """ Show a list of topics """
     topics = Topic.objects.order_by('date_added')
@@ -24,17 +28,20 @@ def allreports(request):
     context = {'reports': reports}
     return render(request, 'resident_reports/allreports.html', context)
 
-def new_report(request):
+def new_report(request, topic_id):
     """ Add new report """
     if request.method != 'POST':
         form = ReportForm
     else:
         form = ReportForm(data=request.POST)
         if form.is_valid():
+            new_entry = form.save(commit=False)
+            new_entry.topic = topic
             form.save()
-            return HttpResponseRedirect(reverse('residents_reports:allreports.html'))
+            return HttpResponseRedirect(reverse('homepage:index',
+                                                args=[topic_id]))
 
-    context = {'form': form}
+    context = {'topic':topic, 'form': form}
     return render(request, 'residents_reports/new_report.html', context)
 
 def edit_report(request, entry_id):

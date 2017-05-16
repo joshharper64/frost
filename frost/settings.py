@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # My Apps
     'homepage',
     'resident_reports',
+    'users',
 ]
 
 MIDDLEWARE = [

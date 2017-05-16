@@ -1,0 +1,26 @@
+{% extends "homepage/base.html" %}
+
+{% block content %}
+
+  <p>Report Classification: {{ topic }}</p>
+
+  <p><a href="{% url 'resident_reports:new_report' %}">New Report</a></p>
+
+  <p>Reports:</p>
+  <ul>
+    {% for report in reports %}
+      <li>
+        <p>{{ report.date_added|date:'M d, Y H:i' }}</p>
+        <p>{{ report.text|linebreaks }}</p>
+        <p>
+          <a href="{% url 'resident_reports:edit_entry' entry.id %}">edit entry</a>
+        </p>
+      </li>
+    {% empty %}
+      <li>
+        There are currently no reports in this category
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %}
