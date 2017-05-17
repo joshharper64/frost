@@ -3,7 +3,7 @@
 {% block content %}
 
   <p>Reports</p>
-
+  <a href="{% url 'resident_reports:new_report' %}">new report</a>
   <ul>
     {% for report in reports %}
       <p>{{ report.date_added|date:'M d, Y H:i' }}</p>

@@ -2,8 +2,6 @@
 
 {% block content %}
 
-  <p><a href="{% url 'resident_reports:topic' topic.id %}">{{ topic }}</a></p>
-
   <p>Edit entry:</p>
 
   <form action="{% url 'resident_reports:edit_entry' entry.id %}" method='post'>
@@ -11,5 +9,5 @@
     {{ form.as_p }}
     <button name="submit">save changes</button>
   </form>
-  
+
 {% endblock content %}

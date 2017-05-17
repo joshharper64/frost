@@ -1,17 +1,11 @@
 from django.db import models
-
-class Topic(models.Model):
-    """ Topic of Report """
-    text = models.CharField(max_length=200)
-    def __str___(self):
-        return self.text
+from django.contrib.auth.models import User
 
 class Report(models.Model):
     """ Report by User """
-    topic = models.ForeignKey(Topic)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
-
+    user = models.ForeignKey(User)
     class Meta:
         verbose_name_plural = 'reports'
 

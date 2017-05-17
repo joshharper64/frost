@@ -2,10 +2,9 @@
 
 {% block content %}
 
-  <p><a href="{% url 'resident_reports:topic' topic.id %}">{{ topic }}</a></p>
-
   <p>Write new report:</p>
-  <form action="{% url 'resident_reports:new_report' %}" method='post'>
+  
+  <form action="{% url 'resident_reports:new_report' %}" method='POST'>
     {% csrf_token %}
     {{ form.as_p }}
     <button name="submit">send report</button>
