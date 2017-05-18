@@ -8,6 +8,7 @@
     {% for report in reports %}
       <p>{{ report.date_added|date:'M d, Y H:i' }}</p>
       <p>{{ report.text|linebreaks }}</p>
+      <p>{{ report.user_name }}</p>
     {% empty %}
       <li>There have been no reports</li>
     {% endfor %}

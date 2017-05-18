@@ -19,10 +19,10 @@ def new_report(request):
     if request.method != 'POST':
         form = ReportForm()
     else:
-        form = ReportForm(user=request.user, data=request.POST)
-        User = get_user_model()
+        form = ReportForm(data=request.POST)
         if form.is_valid():
             new_entry = form.save(commit=False)
+            new_entry.user_name = request.user
             form.save()
             return HttpResponseRedirect(reverse('resident_reports:allreports'))
 
